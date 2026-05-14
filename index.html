@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonsuzluk...</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Arka Plan Videosu */
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+            filter: brightness(0.5); /* Videoyu biraz karartalım ki yazılar parlasın */
+        }
+
+        /* Glassmorphism Kartı */
+        .glass-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Dönen Yazı Alanı */
+        .scrolling-text {
+            height: 80px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .scrolling-text span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #FF0707; /* Neon bir dokunuş */
+            animation: scroll-up 4s infinite ease-in-out;
+        }
+
+        @keyframes scroll-up {
+            0% { transform: translateY(0); }
+            33% { transform: translateY(-40px); }
+            66% { transform: translateY(-80px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Müzik Kontrol Butonu */
+        .music-btn {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+        }
+
+        .music-btn:hover { background: rgba(255, 255, 255, 0.4); }
+    </style>
+</head>
+<body>
+
+    <!-- Arka plan videosu (video.mp4 kısmını kendi dosya adınla değiştir) -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="Ask1.mp4" type="video/manual">
+    </video>
+
+    <div class="glass-container">
+        <h1 style="color: red;">AYLA</h1>
+        
+        <div class="scrolling-text">
+            <span>Seni çok seviyorum...</span>
+            <span>İyi ki varsın</span>
+            <span>Her şeyimsin</span>
+        </div>
+
+        <button class="music-btn" onclick="toggleMusic()">🎵 Müziği Başlat</button>
+        
+        <!-- Müzik dosyası (muzik.mp3 kısmını kendi dosya adınla değiştir) -->
+        <audio id="myAudio" src="Duman.mp4" loop></audio>
+    </div>
+
+    <script>
+        function toggleMusic() {
+            var audio = document.getElementById("myAudio");
+            var btn = document.querySelector(".music-btn");
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = "⏸ Müziği Durdur";
+            } else {
+                audio.pause();
+                btn.innerHTML = "🎵 Müziği Başlat";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
